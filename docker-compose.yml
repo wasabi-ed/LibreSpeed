@@ -16,12 +16,15 @@ services:
         image: jwilder/nginx-proxy
         container_name: nginx-proxy
         environment:
-            - 10.0.0.21
+            - 10.65.16.8
         ports:
             - "80:80"
             - "443:443"
         volumes:
             - /var/run/docker.sock:/tmp/docker.sock:ro
+            - /etc/nginx/certs:/etc/nginx/certs
+            - /etc/nginx/vhost.d:/etc/nginx/vhost.d
+            - /usr/share/nginx/html:/usr/share/nginx/html
         networks:
             - proxy
         restart: unless-stopped
@@ -33,6 +36,7 @@ services:
             - NGINX_PROXY_CONTAINER=nginx-proxy
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock:ro
+            - /etc/nginx/certs:/etc/nginx/certs
         networks:
             - proxy
         restart: unless-stopped
