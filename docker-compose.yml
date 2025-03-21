@@ -15,28 +15,28 @@ services:
     nginx:
         image: jwilder/nginx-proxy
         container_name: nginx-proxy
-	environment:
-	    - 10.0.0.21
-	ports:
-	    - "80:80"
-	    - "443:443"
-	volumes:
-	    - /var/run/docker.sock:/tmp/docker.sock:ro
-	networks:
-	    - proxy
-	restart: unless-stopped
+        environment:
+            - 10.0.0.21
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+        networks:
+            - proxy
+        restart: unless-stopped
 
     letsencrypt:
-	image: jrcs/letsencrypt-nginx-proxy-companion
-	container_name: letsencrypt
-	environment:
-	    - NGINX_PROXY_CONTAINER=nginx-proxy
-	volumes:
-	    - /var/run/docker.sock:/var/run/docker.sock:ro
-	networks:
-	    - proxy
-	restart: unless-stopped
+        image: jrcs/letsencrypt-nginx-proxy-companion
+        container_name: letsencrypt
+        environment:
+            - NGINX_PROXY_CONTAINER=nginx-proxy
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock:ro
+        networks:
+            - proxy
+        restart: unless-stopped
 
 networks:
     proxy:
-	external: true
+        external: true
