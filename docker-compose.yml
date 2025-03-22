@@ -6,8 +6,8 @@ services:
             - PUID=1000
             - PGID=1000
             - TZ=America/New_York
-            - VIRTUAL_HOST=10.65.16.8  # Replace with your domain or IP
-            - LETSENCRYPT_HOST=10.65.16.8
+            - VIRTUAL_HOST=wasabi2bugaloo.duckdns.org  # Replace with your domain or IP
+            - LETSENCRYPT_HOST=wasabi2bugaloo.duckdns.org
             - LETSENCRYPT_EMAIL=emendieta90@gmail.com
         expose:
             - "80"
