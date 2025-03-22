@@ -24,10 +24,13 @@ services:
             - "80:80"
             - "443:443"
         volumes:
-            - /var/run/docker.sock:/tmp/docker.sock:ro
-            - /etc/nginx/certs:/etc/nginx/certs
-            - /etc/nginx/vhost.d:/etc/nginx/vhost.d
-            - ${HOME}/nginx-html:/usr/share/nginx/html
+            - ./nginx.conf:/etc/nginx/nginx.conf
+            - ~/certs/librespeed.crt:/etc/nginx/certs/librespeed.crt
+            - ~/certs/librespeed.key:/etc/nginx/certs/librespeed.key
+            #- /var/run/docker.sock:/tmp/docker.sock:ro
+            #- /etc/nginx/certs:/etc/nginx/certs
+            #- /etc/nginx/vhost.d:/etc/nginx/vhost.d
+            #- ${HOME}/nginx-html:/usr/share/nginx/html
         networks:
             - proxy
         restart: unless-stopped
